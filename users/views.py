@@ -6,15 +6,14 @@ users_blueprint = Blueprint('users', __name__, template_folder='templates')
 
 @users_blueprint.route('/register',  methods=['GET', 'POST'])
 def register():
-    def register():
-        form = RegisterForm()
+    form = RegisterForm()
 
-        if form.validate_on_submit():
-            print(form.data.get('username'))
-            print(form.data.get('password'))
-            return redirect(url_for('users.login'))
+    if form.validate_on_submit():
+        print(form.data.get('username'))
+        print(form.data.get('password'))
+        return redirect(url_for('users.login'))
 
-    return render_template('users/register.html')
+    return render_template('users/register.html', form=form)
 
 @users_blueprint.route('/')
 def login():
