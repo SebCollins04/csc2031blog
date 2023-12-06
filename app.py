@@ -1,8 +1,11 @@
 from flask import Flask, render_template
-import secrets
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = secrets.token_hex(16)
+app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 
 from blog.views import blog_blueprint
 app.register_blueprint(blog_blueprint)
